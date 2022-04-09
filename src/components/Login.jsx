@@ -18,7 +18,7 @@ function Login() {
     },
   };
 
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -32,6 +32,15 @@ function Login() {
       navigate("/");
     } catch (error) {
       setError(message.error[error.code]);
+    }
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (error) {
+      throw new Error(error.message);
     }
   };
 
@@ -55,6 +64,8 @@ function Login() {
           id="password"
           onChange={handleChange}
         />
+
+        <button onClick={handleGoogleSignin}>Login with google</button>
 
         <button>Login</button>
       </form>
