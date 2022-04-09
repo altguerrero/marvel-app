@@ -18,7 +18,8 @@ function Login() {
     },
   };
 
-  const { login, loginWithGoogle } = useAuth();
+  const { login, loginWithGoogle, resetPassword, loginWithFacebook } =
+    useAuth();
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -39,6 +40,23 @@ function Login() {
     try {
       await loginWithGoogle();
       navigate("/");
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
+  const handleFacebookSignin = async () => {
+    try {
+      await loginWithFacebook();
+      navigate("/");
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+  const handleResetPassword = async () => {
+    if (!user.email) return setError("Please enter your email");
+    try {
+      await resetPassword(user.email);
     } catch (error) {
       throw new Error(error.message);
     }
@@ -66,8 +84,12 @@ function Login() {
         />
 
         <button onClick={handleGoogleSignin}>Login with google</button>
+        <button onClick={handleFacebookSignin}>Login with facebook</button>
 
         <button>Login</button>
+        <a href="#!" onClick={handleResetPassword}>
+          Forgot your Password
+        </a>
       </form>
     </div>
   );
