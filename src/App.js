@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import CharacterDetails from "./components/CharacterDetails";
 
 function App() {
   return (
@@ -15,6 +16,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/character/:id"
+          element={
+            <ProtectedRoute>
+              <CharacterDetails />
             </ProtectedRoute>
           }
         />
