@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/authContext";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import CharacterDetails from "./components/CharacterDetails";
+import Home from "./views/Home";
+import Login from "./views/Login";
+import Register from "./views/Register";
+import CharacterDetails from "./views/CharacterDetails";
 
 function App() {
   return (

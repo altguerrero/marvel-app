@@ -5,8 +5,8 @@ import {
   searchCharacters,
 } from "../service/Characters.service";
 
-import ListCharacters from "./ListCharacters";
-import Search from "./Search";
+import ListCharacters from "../components/ListCharacters";
+import Search from "../components/Search";
 
 function Home() {
   const [characters, setCharacters] = useState();
