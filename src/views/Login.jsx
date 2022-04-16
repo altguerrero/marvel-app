@@ -2,6 +2,13 @@ import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 
+import Stack from "../components/Stack";
+import Button from "../components/Button";
+import { FacebookIcon, GoogleIcon } from "../components/Icons";
+import Divider from "../components/Divider";
+import Input from "../components/Input";
+import CustomLink from "../components/CustomLink";
+
 function Login() {
   const [user, setUser] = useState({
     email: "",
@@ -53,44 +60,74 @@ function Login() {
       throw new Error(error.message);
     }
   };
-  const handleResetPassword = async () => {
-    if (!user.email) return setError("Please enter your email");
-    try {
-      await resetPassword(user.email);
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
 
   return (
     <div>
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="youremail@mail.com"
-          onChange={handleChange}
-        />
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
-        />
+      <Stack direction="column" spacing={3}>
+        <Button
+          variant="text"
+          color="text-light"
+          startIcon={<GoogleIcon />}
+          onClick={handleGoogleSignin}
+        >
+          Login with google
+        </Button>
+        <Button
+          variant="contained"
+          color="facebook"
+          startIcon={<FacebookIcon />}
+          onClick={handleFacebookSignin}
+        >
+          Login with facebook
+        </Button>
+      </Stack>
 
-        <button onClick={handleGoogleSignin}>Login with google</button>
-        <button onClick={handleFacebookSignin}>Login with facebook</button>
+      <Divider text="or" />
 
-        <button>Login</button>
-        <a href="#!" onClick={handleResetPassword}>
+      <Stack direction="column" spacing={3}>
+        <form onSubmit={handleSubmit}>
+          <Stack direction="column" spacing="3">
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email Address"
+              onChange={handleChange}
+              value={user.email}
+              required={true}
+            />
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              onChange={handleChange}
+              required={true}
+            />
+            <Button variant="contained" color="primary">
+              Login
+            </Button>
+          </Stack>
+        </form>
+
+        <CustomLink href="/recover-password" align="right">
           Forgot your Password
-        </a>
-      </form>
+        </CustomLink>
+      </Stack>
+
+      <Divider />
+
+      <Button
+        variant="outlined"
+        color="text"
+        width="content"
+        align="center"
+        href="/register"
+      >
+        Create account
+      </Button>
     </div>
   );
 }

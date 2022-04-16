@@ -1,0 +1,26 @@
+.customLink {
+  display: inline-block;
+  color: var(--first-color);
+  margin: var(--align);
+  font-size: 1rem;
+
+  // Colors
+  &__color {
+    &--primary {
+      --first-color: var(--primary-color);
+    }
+  }
+
+  // Align
+  &__align {
+    &--left {
+      --align: 0 auto 0 0;
+    }
+    &--right {
+      --align: 0 0 0 auto;
+    }
+    &--center {
+      --align: 0 auto;
+    }
+  }
+}
