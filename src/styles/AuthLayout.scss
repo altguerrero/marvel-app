@@ -1,0 +1,26 @@
+.AuthLayout {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 1rem;
+  overflow: hidden;
+  display: block;
+  margin: 6rem auto 0;
+
+  @media (min-width: 640px) {
+    max-width: 500px;
+    padding: 0 5.25rem;
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+    & figure {
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    & img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
