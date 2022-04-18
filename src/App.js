@@ -10,6 +10,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import CharacterDetails from "./views/CharacterDetails";
 import RecoverPassword from "./views/RecoverPassword";
+import Profile from "./views/Profile";
 
 const pages = [
   // Public pages
@@ -22,6 +23,12 @@ const pages = [
   {
     path: "/character/:id",
     element: CharacterDetails,
+    layout: AppLayout,
+    protected: true,
+  },
+  {
+    path: "/profile",
+    element: Profile,
     layout: AppLayout,
     protected: true,
   },
