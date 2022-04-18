@@ -6,13 +6,16 @@ import {
 } from "../service/Characters.service";
 
 import ListCharacters from "../components/ListCharacters";
+import Container from "../components/Container";
+import Hero from "../components/Hero";
+import HeroImg from "../assets/img/CharacterHero.jpeg";
 import Search from "../components/Search";
 
 function Home() {
   const [characters, setCharacters] = useState();
   const [searchResults, setSearchResults] = useState();
 
-  const { user, logout, loading } = useAuth();
+  const { loading } = useAuth();
 
   useEffect(() => {
     getData();
@@ -25,10 +28,6 @@ function Home() {
     } catch (error) {
       throw new Error(error.message);
     }
-  };
-
-  const handleLogout = async () => {
-    await logout();
   };
 
   const handleSearch = async ({ target: { value } }) => {
@@ -47,13 +46,19 @@ function Home() {
   if (loading) return <h1>Loading...</h1>;
 
   return (
-    <div>
-      <Search search={handleSearch} searchResults={searchResults} />
-
-      <p>Werlcome {user.email}</p>
-      <button onClick={handleLogout}>Logout</button>
-      {characters && <ListCharacters characters={characters} />}
-    </div>
+    <>
+      <Hero img={HeroImg}>
+        <h1>MARVEL CHARACTERS</h1>
+        <p>
+          Get hooked on a hearty helping of heroes and villains from the humble
+          House of Ideas!
+        </p>
+      </Hero>
+      <Container>
+        <Search search={handleSearch} searchResults={searchResults} />
+        {characters && <ListCharacters characters={characters} />}
+      </Container>
+    </>
   );
 }
 
