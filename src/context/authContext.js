@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
   FacebookAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -21,12 +22,10 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
     });
 
     return () => unSubscribe();
@@ -50,6 +49,12 @@ export function AuthProvider({ children }) {
     return signInWithPopup(auth, facebookProvider);
   };
 
+  const updateUser = async (user) => {
+    await updateProfile(auth, user, {
+      displayName: "test",
+    });
+  };
+
   const resetPassword = (email) => {
     sendPasswordResetEmail(auth, email);
   };
@@ -61,10 +66,10 @@ export function AuthProvider({ children }) {
         login,
         user,
         logout,
-        loading,
         loginWithGoogle,
         resetPassword,
         loginWithFacebook,
+        updateUser,
       }}
     >
       {children}

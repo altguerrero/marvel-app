@@ -12,9 +12,10 @@ function Typography({
     <>
       {variants.includes(variant) &&
         variants.map(
-          (Item) =>
+          (Item, i) =>
             Item === variant && (
               <Item
+                key={i}
                 className={`typography typography__size--${size} typography__align--${align} `}
               >
                 {children}

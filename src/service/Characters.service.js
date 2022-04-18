@@ -39,3 +39,15 @@ export const searchCharacters = async (params) => {
     throw new Error("Error in request: " + error.message);
   }
 };
+
+export const getCharacterComic = async (resourceURI) => {
+  const endpoint = `${resourceURI}?${authUrl}`;
+  const url = endpoint;
+
+  try {
+    const res = await axios.get(url);
+    return res;
+  } catch (error) {
+    throw new Error("Error in request: " + error.message);
+  }
+};

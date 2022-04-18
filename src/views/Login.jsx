@@ -25,8 +25,7 @@ function Login() {
     },
   };
 
-  const { login, loginWithGoogle, resetPassword, loginWithFacebook } =
-    useAuth();
+  const { login, loginWithGoogle, loginWithFacebook } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {

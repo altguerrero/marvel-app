@@ -9,6 +9,9 @@
     &--primary {
       --first-color: var(--primary-color);
     }
+    &--text {
+      --first-color: #000;
+    }
   }
 
   // Align
@@ -21,6 +24,17 @@
     }
     &--center {
       --align: 0 auto;
+    }
+  }
+
+  // Decoration
+  &__decoration {
+    &--none {
+      text-decoration: none;
+    }
+
+    &--underline {
+      text-decoration: underline;
     }
   }
 }
